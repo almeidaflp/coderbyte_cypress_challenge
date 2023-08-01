@@ -1,4 +1,4 @@
-export const ELEMENTS = {
+const ELEMENTS = {
     signUpButton: '#signin2',
     loginButton: '#login2',
     loggedUsername: '#nameofuser',
@@ -6,5 +6,7 @@ export const ELEMENTS = {
     phonesButton: '[onclick^="byCat(\'phone\')"]',
     homeBuutton: '.active > .nav-link',
     cartButton: '#cartur',
-    placeOrderButton: '.col-lg-1 > .btn'
-}
+    placeOrderButton: '.col-lg-1 > .btn',
+};
+
+export default ELEMENTS;
