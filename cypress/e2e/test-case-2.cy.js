@@ -15,12 +15,12 @@ describe('Coderbyte Cypress challenge', () => {
     it('[TestCase - 2] - Validate place order and populate modal', () => {
         const firstPhone = 1;
         const secondPhone = 4;
-        let randomName = faker.person.fullName;
-        let randomCountry = faker.location.country;
-        let randomCity = faker.location.city;
-        let randomCreditCard = faker.finance.creditCardNumber;
-        let randomCCMonth = faker.date.month;
-        let randomCCYear = faker.finance.year;
+        let randomName = faker.person.fullName();
+        let randomCountry = faker.location.country();
+        let randomCity = faker.location.city();
+        let randomCreditCard = faker.finance.creditCardNumber();
+        let randomCCMonth = faker.date.month();
+        let randomCCYear = faker.date.future().getFullYear();
 
         cy.get(homeLocators.loginButton).click();
         cy.loginUser(username, password);
@@ -43,6 +43,13 @@ describe('Coderbyte Cypress challenge', () => {
         cy.deleteRandomPhone().click();
         cy.waitPageTransition();
         cy.validateValuesAfterDelete();
-        cy.placeOrder();
+        cy.placeOrder(
+            randomName,
+            randomCountry,
+            randomCity,
+            randomCreditCard,
+            randomCCMonth,
+            randomCCYear,
+        );
     });
 });

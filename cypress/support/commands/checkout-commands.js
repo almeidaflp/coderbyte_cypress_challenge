@@ -48,6 +48,28 @@ Cypress.Commands.add('validateValuesAfterDelete', () => {
     });
 });
 
-Cypress.Commands.add('placeOrder', () => {
-    cy.get(checkoutLocators.placeOrderButton).should('be.visible').click();
-});
+Cypress.Commands.add(
+    'placeOrder',
+    (name, country, city, ccnumber, month, year) => {
+        cy.get(checkoutLocators.placeOrderButton).should('be.visible').click();
+        cy.get(checkoutLocators.orderName)
+            .type(name, { delay: 1 })
+            .should('have.value', name);
+        cy.get(checkoutLocators.orderCity)
+            .type(city, { delay: 1 })
+            .should('have.value', city);
+        cy.get(checkoutLocators.orderCountry)
+            .type(country, { delay: 0 })
+            .should('have.value', country);
+        cy.get(checkoutLocators.orderCreditCard)
+            .type(ccnumber, { delay: 0 })
+            .should('have.value', ccnumber);
+        cy.get(checkoutLocators.orderCardMonth)
+            .type(month, { delay: 0 })
+            .should('have.value', month);
+        cy.get(checkoutLocators.orderCardYear)
+            .type(year, { delay: 0 })
+            .should('have.value', year);
+        cy.get(checkoutLocators.purchaseButton).should('be.visible').click();
+    },
+);
